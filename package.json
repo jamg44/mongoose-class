@@ -1,0 +1,45 @@
+{
+  "name": "mongoose-class",
+  "version": "0.0.1",
+  "description": "Mongoose ES6 Class",
+  "author": "Javier Miguel González",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "nodemon",
+    "test": "mocha -r ts-node/register src/**/*.spec.ts",
+    "test:watch": "mocha --watch --watch-extensions ts -r ts-node/register src/**/*.spec.ts"
+  },
+  "devDependencies": {
+    "@types/chai": "^3.5.2",
+    "@types/chai-spies": "0.0.0",
+    "@types/mocha": "^2.2.41",
+    "@types/mongoose": "^4.7.13",
+    "@types/node": "^7.0.21",
+    "chai": "^3.5.0",
+    "chai-spies": "^0.7.1",
+    "mocha": "^3.4.1",
+    "rewire": "^2.5.2",
+    "ts-node": "^3.0.4",
+    "typescript": "^2.2.1"
+  },
+  "dependencies": {
+    "mongoose": "^4.10.0"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jamg44/mongoose-class/issues"
+  },
+  "homepage": "https://github.com/jamg44/mongoose-class#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamg44/mongoose-class.git"
+  },
+  "keywords": [
+    "mongoose",
+    "class",
+    "es6",
+    "typescript",
+    "decorators"
+  ]
+}
