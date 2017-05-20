@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- * Product model
- * @module Product
+ * User model
+ * @module User
  */
 
 import { Model, Column, MongooseModel } from '../lib/mongoose-class';

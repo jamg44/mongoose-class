@@ -1,10 +1,38 @@
 # mongoose-class
 
-TODO: virtuals (getter/setter?)
-TODO: plugins
-TODO: Query Helpers
-TODO: revisar: 
-     - https://github.com/szokodiakos/typegoose
-     - https://github.com/typeorm/typeorm
-     - 
-TODO: Poner badges y logos (del estilo de código, etc)
+```
+/**
+ * User model
+ * @module User
+ */
+
+import { Model, Column, MongooseModel } from '../lib/mongoose-class';
+
+@Model({
+  indexes: [ { name: 1, age: -1} ],
+  options: { collection: 'user'},
+  beforeCreate: schema => {
+    schema.virtual('capitalizedName').get(function () {
+      return this.name.toUpperCase();
+    });
+  }
+})
+export class User extends MongooseModel {
+
+  @Column({ type: String, index: true })
+  name: string;
+
+  @Column(Number)
+  age: number;
+
+  static list(callback?: Function) {
+    return this.find().exec(callback);
+  }
+
+  saluda() {
+    return 'Hello, my name is ' + this.name;
+  }
+
+}
+
+```
