@@ -1,6 +1,6 @@
 {
   "name": "mongoose-class",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Mongoose ES6 Class",
   "author": "Javier Miguel González",
   "main": "index.js",

@@ -1,6 +1,6 @@
 
 /**
- * Export lib/mongoose
+ * Export lib/mongoose-class
  *
  */
 
