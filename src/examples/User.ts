@@ -8,7 +8,13 @@
 import { Model, Column, MongooseModel } from '../lib/mongoose-class';
 
 @Model({
-  indexes: [ { name: 1, age: -1} ]
+  indexes: [ { name: 1, age: -1} ],
+  options: { collection: 'user'},
+  beforeCreate: schema => {
+    schema.virtual('capitalizedName').get(function () {
+      return this.name.toUpperCase();
+    });
+  }
 })
 export class User extends MongooseModel {
 

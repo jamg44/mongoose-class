@@ -103,7 +103,34 @@ describe('Model decorator', () => {
     const indexes = TestModel.schema.indexes();
     expect(indexes[0][0]).to.deep.equal({ testName: 1, testAge: -1 });
   });
+
+  it('should set options', () => {
+    class TestClass {
+      @Column({ type: String }) testName: string;
+      @Column({ type: Number }) testAge: number;
+    };
+    const TestModel = Model({
+      options: { collection: 'namechanged'}
+    })(TestClass);
+    expect(TestModel.collection.name).to.equal('namechanged');
+  });
+
+  it('should allow manipulate schema beforeCreate', () => {
+    class TestClass {
+      @Column({ type: String }) testName: string;
+      @Column({ type: Number }) testAge: number;
+    };
+    const TestModel = Model({
+      beforeCreate: schema => {
+        schema.virtual('capitalizedName').get(function () {
+          return this.name.toUpperCase();
+        });
+      }
+    })(TestClass);
+    expect(TestModel.schema.virtuals).to.have.property('capitalizedName');
+  });
 }); // Model decorator
+
 
 describe('Model instance', () => {
 

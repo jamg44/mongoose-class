@@ -17,13 +17,27 @@ export { MongooseModel };
 // Model decorator
 export function Model(config?: any): Function { // decorator factory
   return function (decoratedClass): MongooseModel<Document> { // decorator
+
     const modelName: string = decoratedClass.name;
-    const schema: Schema = mongoose.Schema(getSchema(modelName).schemaDefinition);
+
+    const options: any = {};
+
+    // read Model options
+    if (config && config.options) {
+      Object.assign(options, config.options);
+    }
+
+    // create Schema
+    const schema: Schema = mongoose.Schema(getSchema(modelName).schemaDefinition, options);
+
     applyStaticMethods(decoratedClass, schema);
     applyInstanceMethods(decoratedClass, schema);
+
     if (config) {
       applyConfigIndexes(config.indexes, schema);
+      applyConfigBeforeCreate(config.beforeCreate, schema);
     }
+    //console.log(schema);
     return mongoose.model(modelName, schema);
   };
 }
@@ -36,12 +50,12 @@ export function Column(fieldDef: any) {
     //var types = Reflect.getMetadata('design:properties', target, fieldName);
     //console.log(fieldName, 'type', (typeof target).name);
     const modelName: string = target.constructor.name;
-    let schema: ISchema = getSchema(modelName);
-    if (!schema.modelName) {
-      schema = { modelName, schemaDefinition: {} };
-      schemas.push(schema);
+    let schemaHolder: ISchema = getSchema(modelName);
+    if (!schemaHolder.modelName) {
+      schemaHolder = { modelName, schemaDefinition: {} };
+      schemas.push(schemaHolder);
     }
-    schema.schemaDefinition[fieldName] = fieldDef;
+    schemaHolder.schemaDefinition[fieldName] = fieldDef;
   };
 }
 
@@ -62,7 +76,12 @@ function applyInstanceMethods(decoratedClass, schema: Schema): void {
   });
 }
 
-function applyConfigIndexes(indexes, schema) {
+function applyConfigIndexes(indexes, schema: Schema) {
   if (!indexes) return;
   indexes.forEach(index => schema.index(index));
+}
+
+function applyConfigBeforeCreate(beforeCreate: Function, schema: Schema) {
+  if (!beforeCreate) return;
+  beforeCreate(schema);
 }

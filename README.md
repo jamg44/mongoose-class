@@ -1,7 +1,5 @@
 # mongoose-class
 
-TODO: options
-TODO: schema manipulation before create model
 TODO: virtuals (getter/setter?)
 TODO: plugins
 TODO: Query Helpers

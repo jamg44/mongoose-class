@@ -18,6 +18,7 @@ async function main() {
   await pepe.save();
 
   console.log(pepe.name);
+  console.log(pepe.capitalizedName);
   console.log(pepe.saluda());
 
   const lista = await User.find({});
