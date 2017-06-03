@@ -1,5 +1,7 @@
 # mongoose-class
 
+## Install
+
 ```
 npm install mongoose-class --save
 ```
@@ -8,7 +10,9 @@ npm install mongoose-class --save
 npm install @types/mongoose @types/mongodb --save-dev
 ```
 
+## Create a model
 
+./models/User.ts
 ```
 /**
  * User model
@@ -46,8 +50,13 @@ export class User extends MongooseModel {
 }
 ```
 
+## Use the model
 
+./index.ts
 ```
+
+import { User } from './models/User';
+
 const user = new User({ name: 'Pepe', age: 34, nosale: 33});
 
 User.find({}).exec((err, data) => {
