@@ -11,5 +11,10 @@
   },
   "filesGlob": [
     "./src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "src/examples"
   ]
 }

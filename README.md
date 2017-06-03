@@ -1,12 +1,22 @@
 # mongoose-class
 
 ```
+npm install mongoose-class --save
+```
+
+```
+npm install @types/mongoose @types/mongodb --save-dev
+```
+
+
+```
 /**
  * User model
  * @module User
  */
 
-import { Model, Column, MongooseModel } from '../lib/mongoose-class';
+import { Model as MongooseModel } from 'mongoose';
+import { Model, Column } from '../lib/mongoose-class';
 
 @Model({
   indexes: [ { name: 1, age: -1} ],
@@ -29,10 +39,25 @@ export class User extends MongooseModel {
     return this.find().exec(callback);
   }
 
-  saluda() {
+  greet() {
     return 'Hello, my name is ' + this.name;
   }
 
 }
+```
 
+
+```
+const user = new User({ name: 'Pepe', age: 34, nosale: 33});
+
+User.find({}).exec((err, data) => {
+    console.log('find', err, data);
+});
+
+User.list().then(users => {
+    console.log('list', users);
+});
+
+console.log(user);
+console.log(user.greet());
 ```

@@ -5,7 +5,8 @@
  * @module User
  */
 
-import { Model, Column, MongooseModel } from '../lib/mongoose-class';
+import { Model as MongooseModel } from 'mongoose';
+import { Model, Column } from '../lib/mongoose-class';
 
 @Model({
   indexes: [ { name: 1, age: -1} ],

@@ -1,11 +1,11 @@
 {
   "name": "mongoose-class",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Mongoose ES6 Class",
   "author": "Javier Miguel González",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf build & tsc -d",
     "dev": "nodemon",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "test:watch": "mocha --watch --watch-extensions ts -r ts-node/register src/**/*.spec.ts"
@@ -14,14 +14,15 @@
     "@types/chai": "^3.5.2",
     "@types/chai-spies": "0.0.0",
     "@types/mocha": "^2.2.41",
-    "@types/mongoose": "^4.7.13",
+    "@types/mongodb": "^2.2.2",
+    "@types/mongoose": "^4.7.14",
     "@types/node": "^7.0.21",
     "chai": "^3.5.0",
     "chai-spies": "^0.7.1",
     "mocha": "^3.4.1",
     "rewire": "^2.5.2",
     "ts-node": "^3.0.4",
-    "typescript": "^2.2.1"
+    "typescript": "^2.3.4"
   },
   "dependencies": {
     "mongoose": "^4.10.0"
