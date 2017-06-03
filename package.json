@@ -1,6 +1,6 @@
 {
   "name": "mongoose-class",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "💥 A set of decorators to use Mongoose with ES6 classes in Typescript",
   "author": "Javier Miguel González",
   "main": "index.js",
